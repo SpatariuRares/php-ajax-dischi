@@ -13,22 +13,36 @@
 </head>
 
 <body class="debug">
-    <?php 
-        require __DIR__ . '/header.php';
-    ?>
-    <main id="root" >
-        <div class="discs">
-            <div class="disco" v-for="disc in discs">
-                <div>
-                    <img :src="disc.poster" alt="disco">
-                </div>
-                <div>
-                    <h3>{{disc.title}}</h3>
-                    <p>{{disc.author}}</p>
+    <div id="root">
+        <header class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="">
+            <select name="genere" id="genere" 
+                v-model="genre" 
+                @change="getAlbum">
+                <option value="all">all</option>
+                <option
+                    v-for="(genre, index) in geners"
+                    :value="genre"
+                    :key="index"
+                >
+                    {{ genre }}
+                </option>
+            </select>
+        </header>
+        <main>
+            <div class="discs">
+                <div class="disco" v-for="disc in discs">
+                    <div>
+                        <img :src="disc.poster" alt="disco">
+                    </div>
+                    <div>
+                        <h3>{{disc.title}}</h3>
+                        <p>{{disc.author}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
@@ -60,5 +74,15 @@
         width:100%;
         height: 80%;
         object-fit: cover;
+    }
+    .header {
+        background-color: rgba(46,58,70,255);
+        height: 70px;
+        width: 100%;
+padding: 10px;
+    }
+    img{
+        height: 100%;
+        object-fit: contain;
     }
 </style>
