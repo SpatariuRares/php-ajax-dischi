@@ -1,37 +1,47 @@
-<?php 
-    require __DIR__ . '/database.php';
-    require __DIR__ . '/header.php';
-?>
-<main>
-    <div class="discs">
-        <?php 
-            foreach ($dischi as $disco){
-        ?>
-            <div class="disco">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <title>Frontend</title>
+</head>
+
+<body class="debug">
+    <?php 
+        require __DIR__ . '/header.php';
+    ?>
+    <main id="root" >
+        <div class="discs">
+            <div class="disco" v-for="disc in discs">
                 <div>
-                    <img src=<?php 
-                        echo $disco['poster'];
-                    ?> alt="disco">
+                    <img :src="disc.poster" alt="disco">
                 </div>
                 <div>
-                    <h3><?php echo $disco['title'];?></h3>
-                    <p><?php echo $disco['author'];?></p>
+                    <h3>{{disc.title}}</h3>
+                    <p>{{disc.author}}</p>
                 </div>
             </div>
-        <?php
-        }
-        ?>
-    </div>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>
 </main>
 
 <style>
-    *{
+   *{
         margin:0;
         padding:0;
         box-sizing:border-box;
     }
     main{
-        height:calc(100% - 70px);
+        height:calc(100vh - 70px);
         background-color: #1e2d3b;
         display:flex;
         justify-content:center;
